@@ -1,98 +1,205 @@
-// Surprise Button Animation
-document.getElementById('surpriseButton').addEventListener('click', function() {
-    const surpriseMessage = document.getElementById('surpriseMessage');
-    surpriseMessage.classList.toggle('hidden');
-});
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
 
-// Countdown Timer
-function countdown() {
-    const birthdayDate = new Date("2024-12-25T00:00:00Z"); // Set the actual birthday date here
-    const now = new Date();
-    const timeDiff = birthdayDate - now;
+body {
+    position: relative;
+    overflow: hidden;
+    height: 100vh;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 
-    if (timeDiff <= 0) {
-        document.getElementById("countdownTimer").innerText = "It's your birthday! 🎂🎉";
-        clearInterval(countdownInterval);
-    } else {
-        const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
+/* Floating Particles Background */
+#particles-js {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
 
-        document.getElementById("countdownTimer").innerText = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+/* Gradient Background (Dynamic) */
+@keyframes gradientAnimation {
+    0% {
+        background: linear-gradient(120deg, #ff7b7b, #ffb3b3);
+    }
+    50% {
+        background: linear-gradient(120deg, #ffbb66, #ff5d8f);
+    }
+    100% {
+        background: linear-gradient(120deg, #ff7b7b, #ffb3b3);
     }
 }
 
-const countdownInterval = setInterval(countdown, 1000);
-
-// Particle JS for Background Animation
-particlesJS('particles-js', {
-    particles: {
-        number: {
-            value: 80,
-            density: {
-                enable: true,
-                value_area: 700
-            }
-        },
-        shape: {
-            type: 'circle',
-            stroke: {
-                width: 0,
-                color: '#ff5d8f'
-            }
-        },
-        size: {
-            value: 3,
-            random: true,
-            anim: {
-                enable: true,
-                speed: 4,
-                size_min: 0.3
-            }
-        },
-        move: {
-            enable: true,
-            speed: 2,
-            direction: 'none',
-            random: true,
-            straight: false,
-            out_mode: 'out'
-        }
-    },
-    interactivity: {
-        events: {
-            onhover: {
-                enable: true,
-                mode: 'repulse'
-            },
-            onclick: {
-                enable: true,
-                mode: 'push'
-            }
-        },
-        modes: {
-            repulse: {
-                distance: 100,
-                duration: 0.4
-            },
-            push: {
-                particles_nb: 4
-            }
-        }
-    },
-    retina_detect: true
-});
-
-// Confetti Effect (Optional)
-function startConfetti() {
-    const script = document.createElement('script');
-    script.src = "https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js";
-    script.onload = function() {
-        confetti();
-    };
-    document.body.appendChild(script);
+body {
+    animation: gradientAnimation 15s ease infinite;
 }
 
-// Trigger Confetti when the Surprise Button is clicked
-document.getElementById('surpriseButton').addEventListener('click', startConfetti);
+/* Header */
+header {
+    margin-bottom: 40px;
+    position: relative;
+}
+
+h1 {
+    font-size: 4rem;
+    font-family: 'Sacramento', cursive;
+    color: #ff2a68;
+    animation: fadeIn 3s forwards, bounceIn 1s ease-in-out;
+}
+
+.subheading {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #e63946;
+    margin-top: 10px;
+    animation: fadeIn 3s forwards;
+}
+
+/* Fade In Animation */
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+@keyframes bounceIn {
+    0% { transform: scale(0); }
+    60% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+/* Message Section */
+.message-section {
+    margin-bottom: 40px;
+    font-size: 1.2rem;
+    color: #444;
+    max-width: 600px;
+    animation: slideIn 1s ease-in-out;
+}
+
+.message-section h2 {
+    font-size: 2.5rem;
+    font-family: 'Sacramento', cursive;
+    color: #e63946;
+}
+
+/* Slide In Animation */
+@keyframes slideIn {
+    0% { transform: translateY(-50px); opacity: 0; }
+    100% { transform: translateY(0); opacity: 1; }
+}
+
+/* Calendar Section */
+.calendar-section {
+    margin-top: 50px;
+    font-size: 1.3rem;
+    color: #ff5d8f;
+}
+
+#calendar {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 10px;
+    justify-items: center;
+}
+
+.calendar-day {
+    font-size: 1.5rem;
+    padding: 10px;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.3s, background-color 0.3s;
+}
+
+.calendar-day:hover {
+    transform: scale(1.1);
+    background-color: #ff7b7b;
+}
+
+/* Countdown Section */
+.countdown {
+    font-size: 1.5rem;
+    color: #ff5d8f;
+    margin-top: 40px;
+    animation: fadeIn 3s forwards;
+}
+
+#countdownTimer {
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: #e63946;
+}
+
+/* Surprise Button */
+#surpriseButton {
+    padding: 12px 35px;
+    background-color: #ff5d8f;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 20px;
+    animation: zoomIn 0.8s ease-in-out;
+}
+
+#surpriseButton:hover {
+    background-color: #ff3355;
+}
+
+@keyframes zoomIn {
+    0% { transform: scale(0); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+/* Surprise Message */
+#surpriseMessage {
+    margin-top: 20px;
+    font-size: 1.3rem;
+    color: #e63946;
+    animation: fadeInUp 1s ease-out;
+}
+
+.hidden {
+    display: none;
+}
+
+.surprise-img {
+    max-width: 200px;
+    margin-top: 15px;
+    animation: scaleIn 1s ease-out;
+}
+
+@keyframes fadeInUp {
+    0% { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scaleIn {
+    0% { transform: scale(0); }
+    100% { transform: scale(1); }
+}
+
+/* Footer */
+footer {
+    margin-top: 40px;
+    font-size: 1.2rem;
+    color: #444;
+    font-weight: bold;
+}
