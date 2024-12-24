@@ -25,6 +25,41 @@ function countdown() {
 
 const countdownInterval = setInterval(countdown, 1000);
 
+// Dynamic Calendar
+function generateCalendar() {
+    const calendarContainer = document.getElementById("calendar");
+    const currentDate = new Date();
+    const month = currentDate.getMonth(); // Current month (0-11)
+    const year = currentDate.getFullYear();
+    
+    const daysInMonth = new Date(year, month + 1, 0).getDate(); // Get total days in current month
+    const firstDayOfMonth = new Date(year, month, 1).getDay(); // Day of week (0-6)
+    
+    calendarContainer.innerHTML = ''; // Clear previous calendar
+
+    // Add empty spaces for days before the start of the month
+    for (let i = 0; i < firstDayOfMonth; i++) {
+        calendarContainer.innerHTML += '<div class="calendar-day"></div>';
+    }
+
+    // Add days of the month
+    for (let day = 1; day <= daysInMonth; day++) {
+        const dayElement = document.createElement('div');
+        dayElement.classList.add('calendar-day');
+        dayElement.innerText = day;
+
+        // Highlight birthday day (e.g., December 25th)
+        if (day === 25) {
+            dayElement.style.backgroundColor = '#ff5d8f';
+            dayElement.style.color = 'white';
+        }
+
+        calendarContainer.appendChild(dayElement);
+    }
+}
+
+generateCalendar();
+
 // Particle JS for Background Animation
 particlesJS('particles-js', {
     particles: {
@@ -83,16 +118,3 @@ particlesJS('particles-js', {
     },
     retina_detect: true
 });
-
-// Confetti Effect (Optional)
-function startConfetti() {
-    const script = document.createElement('script');
-    script.src = "https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js";
-    script.onload = function() {
-        confetti();
-    };
-    document.body.appendChild(script);
-}
-
-// Trigger Confetti when the Surprise Button is clicked
-document.getElementById('surpriseButton').addEventListener('click', startConfetti);
