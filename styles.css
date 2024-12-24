@@ -1,0 +1,109 @@
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    background: linear-gradient(120deg, #f0c7d8, #f8c9d4);
+    color: #333;
+    text-align: center;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Header */
+header {
+    margin-bottom: 40px;
+}
+
+h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #ff2a68;
+    animation: bounceIn 1.5s ease-in-out;
+}
+
+.animate-text {
+    display: inline-block;
+    opacity: 0;
+    animation: fadeIn 3s forwards;
+}
+
+/* Animation for the text */
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+/* Section styles */
+.message-section {
+    margin-bottom: 40px;
+    font-size: 1.2rem;
+    color: #444;
+    max-width: 600px;
+}
+
+.message-section h2 {
+    font-size: 2rem;
+    color: #e63946;
+}
+
+/* Surprise Button */
+#surpriseButton {
+    padding: 10px 30px;
+    background-color: #ff5d8f;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#surpriseButton:hover {
+    background-color: #ff3355;
+}
+
+/* Surprise Message */
+#surpriseMessage {
+    margin-top: 20px;
+    font-size: 1.3rem;
+    color: #e63946;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Image for the surprise */
+.surprise-img {
+    max-width: 150px;
+    margin-top: 15px;
+    animation: slideUp 1s ease-out;
+}
+
+/* Footer */
+footer {
+    margin-top: 40px;
+    font-size: 1.2rem;
+    color: #444;
+    font-weight: bold;
+}
+
+/* Animation */
+@keyframes slideUp {
+    0% { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes bounceIn {
+    0% { transform: scale(0); }
+    60% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
