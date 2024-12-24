@@ -75,21 +75,45 @@
             animation: confetti 3s linear infinite;
         }
 
+        .heart {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            background: #ff69b4;
+            clip-path: polygon(50% 0%, 61% 10%, 71% 30%, 85% 40%, 100% 50%, 85% 60%, 71% 70%, 61% 90%, 50% 100%, 39% 90%, 29% 70%, 15% 60%, 0% 50%, 15% 40%, 29% 30%, 39% 10%);
+            animation: fly 5s infinite ease-in;
+            opacity: 0.8;
+        }
+
+        @keyframes fly {
+            0% {
+                transform: translateY(100vh) translateX(0);
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) translateX(50px);
+                opacity: 0;
+            }
+        }
+
         .btn {
             display: inline-block;
             margin-top: 20px;
-            padding: 12px 25px;
+            padding: 15px 30px;
             font-size: 1.2em;
             color: #fff;
-            background: #ff5722;
+            background: linear-gradient(to right, #ff5722, #ff9800);
             border: none;
-            border-radius: 8px;
+            border-radius: 50px;
             cursor: pointer;
-            transition: background 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            transition: transform 0.2s ease;
         }
 
         .btn:hover {
-            background: #e64a19;
             transform: scale(1.1);
         }
 
@@ -109,7 +133,7 @@
             </div>
         </div>
 
-        <button class="btn" onclick="launchConfetti()">Celebrate!</button>
+        <button class="btn" onclick="launchCelebration()">Celebrate!</button>
     </div>
 
     <script>
@@ -141,7 +165,7 @@
             }
         }
 
-        function launchConfetti() {
+        function launchCelebration() {
             for (let i = 0; i < 50; i++) {
                 const confetti = document.createElement('div');
                 confetti.className = 'confetti';
@@ -151,6 +175,16 @@
                 document.body.appendChild(confetti);
 
                 setTimeout(() => confetti.remove(), 3000);
+            }
+
+            for (let i = 0; i < 30; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'heart';
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.animationDelay = Math.random() * 3 + 's';
+                document.body.appendChild(heart);
+
+                setTimeout(() => heart.remove(), 5000);
             }
         }
 
