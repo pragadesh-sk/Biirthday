@@ -3,61 +3,143 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Birthday, My Love!</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Sacramento&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    <title>Happy Birthday!</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to bottom, #ff9a9e, #fad0c4);
+            color: #333;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .container {
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            color: #fff;
+            margin: 0.5em 0;
+        }
+
+        h2 {
+            font-size: 1.8em;
+            color: #fff;
+        }
+
+        .dynamic-calendar {
+            margin: 20px auto;
+            max-width: 350px;
+            background: #fff;
+            padding: 15px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .date {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #f06c9b;
+            margin-bottom: 15px;
+        }
+
+        .icons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .icon {
+            font-size: 2em;
+            color: #f06c9b;
+        }
+
+        @keyframes confetti {
+            0% {transform: translateY(-200px) rotate(0deg);}
+            100% {transform: translateY(100vh) rotate(360deg);}
+        }
+
+        .confetti {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 10px;
+            height: 10px;
+            background: #f06c9b;
+            opacity: 0.8;
+            animation: confetti 3s linear infinite;
+        }
+
+        .btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 1em;
+            color: #fff;
+            background: #f06c9b;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .btn:hover {
+            background: #d0547b;
+        }
+
+    </style>
 </head>
 <body>
+    <div class="container">
+        <h1>Happy Birthday, My Love!</h1>
+        <h2>January 17, 2025</h2>
+        <div class="dynamic-calendar">
+            <div class="date" id="countdown"></div>
 
-    <!-- Background -->
-    <div id="particles-js"></div>
-
-    <!-- Header -->
-    <header>
-        <h1 class="animate-text">Happy Birthday, My Love! 🎉</h1>
-        <p class="subheading">Every day with you feels like a celebration!</p>
-    </header>
-
-    <!-- Personal Message Section -->
-    <section class="message-section">
-        <h2 class="personal-message">To the most beautiful soul I know... 💖</h2>
-        <p>On your special day, I want you to know how much you mean to me. Every moment with you is magical, and I’m so lucky to have you in my life!</p>
-    </section>
-
-    <!-- Countdown Timer Section -->
-    <section class="countdown">
-        <h3>Countdown to Your Birthday 🎂</h3>
-        <p id="countdownTimer"></p>
-    </section>
-
-    <!-- Calendar Section -->
-    <section class="calendar-section">
-        <h3>See the Calendar! 📅</h3>
-        <div id="calendar"></div>
-    </section>
-
-    <!-- Surprise Button -->
-    <section class="surprise">
-        <button id="surpriseButton">Click for a Special Surprise! 🎁</button>
-        <div id="surpriseMessage" class="hidden">
-            <p>You're my everything! Here's a virtual hug! 🤗</p>
-            <img src="https://example.com/hug-emoji.png" alt="Hug" class="surprise-img" />
+            <div class="icons">
+                <span class="icon">🎉</span>
+                <span class="icon">💖</span>
+                <span class="icon">🎁</span>
+            </div>
         </div>
-    </section>
 
-    <!-- Footer -->
-    <footer>
-        <p>With all my love, forever and always 💕</p>
-    </footer>
+        <button class="btn" onclick="launchConfetti()">Celebrate!</button>
+    </div>
 
-    <!-- Background Music -->
-    <audio id="backgroundMusic" autoplay loop>
-        <source src="your-music-file.mp3" type="audio/mp3">
-        Your browser does not support the audio element.
-    </audio>
+    <script>
+        function updateCountdown() {
+            const birthday = new Date('2025-01-17T00:00:00');
+            const now = new Date();
+            const diff = birthday - now;
 
-    <!-- Include Particle JS -->
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    <script src="scripts.js"></script>
+            if (diff > 0) {
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+                document.getElementById('countdown').innerText = `Countdown: ${days} days, ${hours} hrs, ${minutes} mins, ${seconds} secs`;
+            } else {
+                document.getElementById('countdown').innerText = "Happy Birthday!";
+            }
+        }
+
+        function launchConfetti() {
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.animationDelay = Math.random() * 3 + 's';
+                confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 70%)`;
+                document.body.appendChild(confetti);
+
+                setTimeout(() => confetti.remove(), 3000);
+            }
+        }
+
+        setInterval(updateCountdown, 1000);
+    </script>
 </body>
 </html>
