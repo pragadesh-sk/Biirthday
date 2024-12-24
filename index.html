@@ -107,11 +107,38 @@
             font-weight: bold;
             border-radius: 5px;
         }
+
+        .celebration-page {
+            display: none;
+            background: url('https://source.unsplash.com/1920x1080/?birthday,cake') no-repeat center center/cover;
+            height: 100vh;
+            color: white;
+            text-align: center;
+            padding: 50px;
+        }
+
+        .celebration-content {
+            background: rgba(0, 0, 0, 0.6);
+            padding: 20px;
+            border-radius: 15px;
+            display: inline-block;
+        }
+
+        .celebration-content h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            font-family: 'Great Vibes', cursive;
+        }
+
+        .celebration-content p {
+            font-size: 1.5em;
+            margin: 10px 0;
+        }
     </style>
 </head>
 <body>
     <canvas id="particles"></canvas>
-    <div class="container">
+    <div class="container" id="main-content">
         <h1>Happy Birthday, My Love!</h1>
         <h2>January 17, 2025</h2>
 
@@ -145,6 +172,16 @@
         </div>
 
         <button class="btn" onclick="launchCelebration()">Celebrate!</button>
+    </div>
+
+    <div class="celebration-page" id="celebration-page">
+        <div class="celebration-content">
+            <h1>Happy Birthday, My Love!</h1>
+            <p>🎂 Here's your cake to sweeten the day!</p>
+            <p>🍫 Enjoy these chocolates as a treat!</p>
+            <p>🤗 Sending you a big warm hug!</p>
+            <p>❤️ You are loved beyond measure!</p>
+        </div>
     </div>
 
     <script>
@@ -201,7 +238,8 @@
         animateParticles();
 
         function launchCelebration() {
-            alert("Happy Birthday Celebration Time!");
+            document.getElementById('main-content').style.display = 'none';
+            document.getElementById('celebration-page').style.display = 'block';
         }
     </script>
 </body>
