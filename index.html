@@ -8,10 +8,11 @@
         body {
             margin: 0;
             font-family: 'Arial', sans-serif;
-            background: linear-gradient(to bottom, #ff9a9e, #fad0c4);
-            color: #333;
+            background: linear-gradient(to bottom, #1e3c72, #2a5298);
+            color: #fff;
             text-align: center;
             overflow: hidden;
+            position: relative;
         }
 
         .container {
@@ -19,30 +20,32 @@
         }
 
         h1 {
-            font-size: 2.5em;
+            font-size: 3em;
             color: #fff;
             margin: 0.5em 0;
         }
 
         h2 {
-            font-size: 1.8em;
-            color: #fff;
+            font-size: 2em;
+            color: #ffeb3b;
         }
 
         .dynamic-calendar {
             margin: 20px auto;
             max-width: 350px;
-            background: #fff;
-            padding: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
             border-radius: 15px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
         }
 
         .date {
-            font-size: 1.2em;
+            font-size: 1.5em;
             font-weight: bold;
-            color: #f06c9b;
+            color: #ffeb3b;
             margin-bottom: 15px;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
         }
 
         .icons {
@@ -52,8 +55,8 @@
         }
 
         .icon {
-            font-size: 2em;
-            color: #f06c9b;
+            font-size: 2.5em;
+            color: #ffeb3b;
         }
 
         @keyframes confetti {
@@ -67,7 +70,7 @@
             left: 0;
             width: 10px;
             height: 10px;
-            background: #f06c9b;
+            background: #ffeb3b;
             opacity: 0.8;
             animation: confetti 3s linear infinite;
         }
@@ -75,18 +78,19 @@
         .btn {
             display: inline-block;
             margin-top: 20px;
-            padding: 10px 20px;
-            font-size: 1em;
+            padding: 12px 25px;
+            font-size: 1.2em;
             color: #fff;
-            background: #f06c9b;
+            background: #ff5722;
             border: none;
-            border-radius: 5px;
+            border-radius: 8px;
             cursor: pointer;
-            transition: background 0.3s ease;
+            transition: background 0.3s ease, transform 0.2s ease;
         }
 
         .btn:hover {
-            background: #d0547b;
+            background: #e64a19;
+            transform: scale(1.1);
         }
 
     </style>
@@ -120,7 +124,18 @@
                 const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
                 const seconds = Math.floor((diff % (1000 * 60)) / 1000);
 
-                document.getElementById('countdown').innerText = `Countdown: ${days} days, ${hours} hrs, ${minutes} mins, ${seconds} secs`;
+                document.getElementById('countdown').innerHTML = `
+                    <span>${days} <small>Days</small></span>
+                    <span>${hours} <small>Hrs</small></span>
+                    <span>${minutes} <small>Mins</small></span>
+                    <span>${seconds} <small>Secs</small></span>
+                `;
+                document.getElementById('countdown').style.display = "grid";
+                document.getElementById('countdown').style.gridTemplateColumns = "repeat(4, 1fr)";
+                document.getElementById('countdown').style.gap = "10px";
+                document.getElementById('countdown').style.textAlign = "center";
+                document.getElementById('countdown').style.color = "#ffeb3b";
+                document.getElementById('countdown').style.fontWeight = "bold";
             } else {
                 document.getElementById('countdown').innerText = "Happy Birthday!";
             }
