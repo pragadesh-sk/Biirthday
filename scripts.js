@@ -25,6 +25,65 @@ function countdown() {
 
 const countdownInterval = setInterval(countdown, 1000);
 
+// Particle JS for Background Animation
+particlesJS('particles-js', {
+    particles: {
+        number: {
+            value: 80,
+            density: {
+                enable: true,
+                value_area: 700
+            }
+        },
+        shape: {
+            type: 'circle',
+            stroke: {
+                width: 0,
+                color: '#ff5d8f'
+            }
+        },
+        size: {
+            value: 3,
+            random: true,
+            anim: {
+                enable: true,
+                speed: 4,
+                size_min: 0.3
+            }
+        },
+        move: {
+            enable: true,
+            speed: 2,
+            direction: 'none',
+            random: true,
+            straight: false,
+            out_mode: 'out'
+        }
+    },
+    interactivity: {
+        events: {
+            onhover: {
+                enable: true,
+                mode: 'repulse'
+            },
+            onclick: {
+                enable: true,
+                mode: 'push'
+            }
+        },
+        modes: {
+            repulse: {
+                distance: 100,
+                duration: 0.4
+            },
+            push: {
+                particles_nb: 4
+            }
+        }
+    },
+    retina_detect: true
+});
+
 // Confetti Effect (Optional)
 function startConfetti() {
     const script = document.createElement('script');
@@ -37,4 +96,3 @@ function startConfetti() {
 
 // Trigger Confetti when the Surprise Button is clicked
 document.getElementById('surpriseButton').addEventListener('click', startConfetti);
-
