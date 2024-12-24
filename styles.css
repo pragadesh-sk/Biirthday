@@ -1,137 +1,98 @@
-/* Global Styles */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+// Surprise Button Animation
+document.getElementById('surpriseButton').addEventListener('click', function() {
+    const surpriseMessage = document.getElementById('surpriseMessage');
+    surpriseMessage.classList.toggle('hidden');
+});
+
+// Countdown Timer
+function countdown() {
+    const birthdayDate = new Date("2024-12-25T00:00:00Z"); // Set the actual birthday date here
+    const now = new Date();
+    const timeDiff = birthdayDate - now;
+
+    if (timeDiff <= 0) {
+        document.getElementById("countdownTimer").innerText = "It's your birthday! 🎂🎉";
+        clearInterval(countdownInterval);
+    } else {
+        const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
+
+        document.getElementById("countdownTimer").innerText = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    }
 }
 
-body {
-    background: linear-gradient(120deg, #f0c7d8, #f8c9d4);
-    color: #333;
-    text-align: center;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    overflow: hidden;
+const countdownInterval = setInterval(countdown, 1000);
+
+// Particle JS for Background Animation
+particlesJS('particles-js', {
+    particles: {
+        number: {
+            value: 80,
+            density: {
+                enable: true,
+                value_area: 700
+            }
+        },
+        shape: {
+            type: 'circle',
+            stroke: {
+                width: 0,
+                color: '#ff5d8f'
+            }
+        },
+        size: {
+            value: 3,
+            random: true,
+            anim: {
+                enable: true,
+                speed: 4,
+                size_min: 0.3
+            }
+        },
+        move: {
+            enable: true,
+            speed: 2,
+            direction: 'none',
+            random: true,
+            straight: false,
+            out_mode: 'out'
+        }
+    },
+    interactivity: {
+        events: {
+            onhover: {
+                enable: true,
+                mode: 'repulse'
+            },
+            onclick: {
+                enable: true,
+                mode: 'push'
+            }
+        },
+        modes: {
+            repulse: {
+                distance: 100,
+                duration: 0.4
+            },
+            push: {
+                particles_nb: 4
+            }
+        }
+    },
+    retina_detect: true
+});
+
+// Confetti Effect (Optional)
+function startConfetti() {
+    const script = document.createElement('script');
+    script.src = "https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js";
+    script.onload = function() {
+        confetti();
+    };
+    document.body.appendChild(script);
 }
 
-/* Animated Background */
-@keyframes gradientAnimation {
-    0% { background: linear-gradient(120deg, #f0c7d8, #f8c9d4); }
-    50% { background: linear-gradient(120deg, #f8c9d4, #ffb3b3); }
-    100% { background: linear-gradient(120deg, #f0c7d8, #f8c9d4); }
-}
-
-body {
-    animation: gradientAnimation 10s ease infinite;
-}
-
-/* Header */
-header {
-    margin-bottom: 40px;
-}
-
-h1 {
-    font-size: 4rem;
-    font-family: 'Sacramento', cursive;
-    color: #ff2a68;
-    animation: fadeIn 3s forwards;
-}
-
-.subheading {
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: #e63946;
-    margin-top: 10px;
-}
-
-/* Animation for the text */
-@keyframes fadeIn {
-    0% { opacity: 0; }
-    100% { opacity: 1; }
-}
-
-/* Message Section */
-.message-section {
-    margin-bottom: 40px;
-    font-size: 1.2rem;
-    color: #444;
-    max-width: 600px;
-}
-
-.message-section h2 {
-    font-size: 2.5rem;
-    font-family: 'Sacramento', cursive;
-    color: #e63946;
-}
-
-/* Surprise Button */
-#surpriseButton {
-    padding: 12px 35px;
-    background-color: #ff5d8f;
-    color: white;
-    border: none;
-    border-radius: 30px;
-    font-size: 1.2rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    margin-top: 20px;
-}
-
-#surpriseButton:hover {
-    background-color: #ff3355;
-}
-
-/* Surprise Message */
-#surpriseMessage {
-    margin-top: 20px;
-    font-size: 1.3rem;
-    color: #e63946;
-}
-
-.hidden {
-    display: none;
-}
-
-.surprise-img {
-    max-width: 200px;
-    margin-top: 15px;
-    animation: slideUp 1s ease-out;
-}
-
-/* Countdown Section */
-.countdown {
-    font-size: 1.5rem;
-    color: #ff5d8f;
-    margin-top: 40px;
-}
-
-#countdownTimer {
-    font-size: 2.5rem;
-    font-weight: 600;
-    color: #e63946;
-}
-
-/* Footer */
-footer {
-    margin-top: 40px;
-    font-size: 1.2rem;
-    color: #444;
-    font-weight: bold;
-}
-
-/* Image Animations */
-@keyframes slideUp {
-    0% { opacity: 0; transform: translateY(20px); }
-    100% { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes bounceIn {
-    0% { transform: scale(0); }
-    60% { transform: scale(1.2); }
-    100% { transform: scale(1); }
-}
+// Trigger Confetti when the Surprise Button is clicked
+document.getElementById('surpriseButton').addEventListener('click', startConfetti);
