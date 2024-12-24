@@ -4,12 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Happy Birthday, My Love!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Sacramento&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
     <header>
         <h1 class="animate-text">Happy Birthday, My Love! 🎉</h1>
+        <p class="subheading">Every day with you feels like a celebration!</p>
     </header>
 
     <section class="message-section">
@@ -25,9 +27,20 @@
         </div>
     </section>
 
+    <section class="countdown">
+        <h3>Countdown to Your Birthday 🎂</h3>
+        <p id="countdownTimer"></p>
+    </section>
+
     <footer>
         <p>With all my love, forever and always 💕</p>
     </footer>
+
+    <!-- Background Music -->
+    <audio id="backgroundMusic" autoplay loop>
+        <source src="your-music-file.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
 
     <script src="scripts.js"></script>
 </body>
