@@ -324,7 +324,7 @@
         </div>
 
         <!-- Celebrate Button -->
-        <button class="celebrate-btn" onclick="celebrate()">Celebrate</button>
+        <button class="celebrate-btn" onclick="celebrate()" id="celebrateBtn" disabled>Celebrate</button>
         
         <!-- Popup Message -->
         <div class="popup" id="popup">
@@ -356,6 +356,7 @@
             if (distance < 0) {
                 clearInterval(timerInterval);
                 document.getElementById("countdown").innerHTML = "Time's up!";
+                celebrateBtn.disabled = false;
             }
         };
 
