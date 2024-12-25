@@ -29,6 +29,8 @@
             text-align: center;
             z-index: 1;
             position: relative;
+            width: 90%;
+            max-width: 800px;
         }
 
         h1 {
@@ -37,7 +39,7 @@
         }
 
         .countdown {
-            font-size: 2em;
+            font-size: 1.5em;
             margin-top: 20px;
         }
 
@@ -116,6 +118,7 @@
             display: flex;
             justify-content: center;
             gap: 20px;
+            flex-wrap: wrap;
         }
 
         .countdown-timer span {
@@ -138,6 +141,7 @@
             overflow: hidden;
             border-collapse: collapse;
             margin-top: 20px;
+            width: 100%;
         }
 
         .calendar-table th, .calendar-table td {
@@ -164,6 +168,61 @@
             margin-top: 20px;
         }
 
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+
+            .countdown-timer span {
+                font-size: 1.5em;
+                padding: 12px;
+            }
+
+            .celebrate-btn {
+                font-size: 1.2em;
+                padding: 12px 24px;
+            }
+
+            .calendar {
+                padding: 15px;
+            }
+
+            .popup {
+                width: 90%;
+                padding: 30px;
+            }
+
+            .calendar-table td {
+                font-size: 1.2em;
+                padding: 8px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.8em;
+            }
+
+            .countdown-timer span {
+                font-size: 1.2em;
+                padding: 10px;
+            }
+
+            .celebrate-btn {
+                font-size: 1.1em;
+                padding: 10px 20px;
+            }
+
+            .calendar {
+                padding: 10px;
+            }
+
+            .calendar-table td {
+                font-size: 1em;
+                padding: 6px;
+            }
+        }
     </style>
 </head>
 <body>
