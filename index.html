@@ -3,250 +3,298 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Birthday!</title>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Birthday Wish for My Love</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Roboto:wght@400;700&display=swap');
-
-        body {
+        /* General Reset */
+        * {
             margin: 0;
-            font-family: 'Roboto', sans-serif;
-            background: #000;
-            color: #fff;
-            text-align: center;
-            overflow: hidden;
-            position: relative;
+            padding: 0;
+            box-sizing: border-box;
         }
 
-        canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
+        body {
+            font-family: 'Arial', sans-serif;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: url('https://images.unsplash.com/photo-1504630533343-b8fda443f244') no-repeat center center fixed;
+            background-size: cover;
+            color: #fff;
+            overflow: hidden;
         }
 
         .container {
-            padding: 20px;
+            text-align: center;
+            z-index: 1;
+            position: relative;
         }
 
         h1 {
-            font-size: 3.5em;
-            color: #ffeb3b;
-            margin: 0.5em 0;
-            font-family: 'Great Vibes', cursive;
-            text-shadow: 0 0 10px rgba(255, 255, 0, 0.8);
+            font-size: 3em;
+            margin-bottom: 10px;
         }
 
-        h2 {
+        .countdown {
             font-size: 2em;
-            color: #ff69b4;
-            font-family: 'Great Vibes', cursive;
+            margin-top: 20px;
+        }
+
+        .calendar {
+            margin-top: 30px;
+            border-radius: 12px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.8);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .calendar h3 {
+            margin-bottom: 10px;
+        }
+
+        /* Button */
+        .celebrate-btn {
+            background-color: #ff6f61;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.5em;
+            border-radius: 50px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .celebrate-btn:active {
+            transform: scale(0.95);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Popup Styling */
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(135deg, #ff7e5f, #feb47b);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
+            z-index: 2;
+            color: #fff;
+            font-size: 1.5em;
+        }
+
+        .popup h2 {
             margin-bottom: 20px;
         }
 
-        .dynamic-calendar {
-            margin: 20px auto;
-            max-width: 350px;
-            background: rgba(255, 255, 255, 0.1);
-            padding: 20px;
-            border-radius: 15px;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
-            font-family: 'Roboto', sans-serif;
+        .cake-confetti {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            animation: confetti 2s infinite;
         }
 
-        .date {
-            font-size: 1.5em;
+        @keyframes confetti {
+            0% {
+                transform: translateX(-50%) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateX(-50%) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Countdown Timer */
+        .countdown-timer {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .countdown-timer span {
+            font-size: 2.5em;
             font-weight: bold;
-            color: #ffeb3b;
-            margin-bottom: 15px;
-            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+            background-color: rgba(255, 255, 255, 0.7);
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
         }
 
-        .btn {
+        /* Calendar */
+        .calendar-container {
             display: inline-block;
             margin-top: 20px;
-            padding: 15px 30px;
-            font-size: 1.2em;
-            color: #fff;
-            background: linear-gradient(to right, #ff5722, #ff9800);
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-            transition: transform 0.2s ease;
-        }
-
-        .btn:hover {
-            transform: scale(1.1);
         }
 
         .calendar-table {
-            width: 100%;
+            border-radius: 10px;
+            overflow: hidden;
             border-collapse: collapse;
-            color: #fff;
+            margin-top: 20px;
         }
 
-        .calendar-table th,
-        .calendar-table td {
+        .calendar-table th, .calendar-table td {
             padding: 10px;
             text-align: center;
-            border: 1px solid rgba(255, 255, 255, 0.3);
         }
 
-        .calendar-table th {
-            background-color: rgba(255, 255, 255, 0.2);
-            color: #ffeb3b;
-            font-weight: bold;
+        .calendar-table td {
+            cursor: pointer;
         }
 
-        .birthday-cell {
-            background: #ff69b4;
+        .calendar-table td:hover {
+            background-color: #f7d7d7;
+        }
+
+        .calendar-table td.marked {
+            background-color: #ff6f61;
             color: #fff;
-            font-weight: bold;
-            border-radius: 5px;
         }
 
-        .celebration-page {
-            display: none;
-            background: url('https://source.unsplash.com/1920x1080/?birthday,celebration') no-repeat center center/cover;
-            height: 100vh;
-            color: white;
-            text-align: center;
-            padding: 50px;
-            font-family: 'Great Vibes', cursive;
-        }
-
-        .celebration-content {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 30px;
-            border-radius: 20px;
-            display: inline-block;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
-        }
-
-        .celebration-content h1 {
-            font-size: 4em;
-            margin-bottom: 20px;
-            font-family: 'Great Vibes', cursive;
-            color: #ffeb3b;
-            text-shadow: 0 0 10px rgba(255, 255, 0, 0.8);
-        }
-
-        .celebration-content p {
+        /* Virtual Hug */
+        .virtual-hug {
             font-size: 2em;
-            margin: 10px 0;
-            color: #ffffff;
-            text-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
+            margin-top: 20px;
         }
+
     </style>
 </head>
 <body>
-    <canvas id="particles"></canvas>
-    <div class="container" id="main-content">
+    <div class="container">
         <h1>Happy Birthday, My Love!</h1>
-        <h2>January 17, 2025</h2>
-
-        <div class="dynamic-calendar">
-            <table class="calendar-table">
-                <tr>
-                    <th>Sun</th>
-                    <th>Mon</th>
-                    <th>Tue</th>
-                    <th>Wed</th>
-                    <th>Thu</th>
-                    <th>Fri</th>
-                    <th>Sat</th>
-                </tr>
-                <tr>
-                    <td></td><td></td><td></td><td>1</td><td>2</td><td>3</td><td>4</td>
-                </tr>
-                <tr>
-                    <td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td>
-                </tr>
-                <tr>
-                    <td>12</td><td>13</td><td>14</td><td>15</td><td>16</td><td class="birthday-cell">17</td><td>18</td>
-                </tr>
-                <tr>
-                    <td>19</td><td>20</td><td>21</td><td>22</td><td>23</td><td>24</td><td>25</td>
-                </tr>
-                <tr>
-                    <td>26</td><td>27</td><td>28</td><td>29</td><td>30</td><td>31</td><td></td>
-                </tr>
-            </table>
+        
+        <!-- Countdown Timer -->
+        <div class="countdown">
+            <p>Countdown to your special day:</p>
+            <div class="countdown-timer" id="countdown">
+                <span id="days">00</span> Days
+                <span id="hours">00</span> Hours
+                <span id="minutes">00</span> Minutes
+                <span id="seconds">00</span> Seconds
+            </div>
         </div>
 
-        <button class="btn" onclick="launchCelebration()">Celebrate!</button>
-    </div>
+        <!-- Calendar -->
+        <div class="calendar">
+            <h3>Mark your special day on the calendar:</h3>
+            <div class="calendar-container">
+                <table class="calendar-table">
+                    <thead>
+                        <tr>
+                            <th>Sun</th>
+                            <th>Mon</th>
+                            <th>Tue</th>
+                            <th>Wed</th>
+                            <th>Thu</th>
+                            <th>Fri</th>
+                            <th>Sat</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td>1</td>
+                            <td>2</td>
+                            <td>3</td>
+                            <td>4</td>
+                            <td>5</td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td>7</td>
+                            <td>8</td>
+                            <td>9</td>
+                            <td>10</td>
+                            <td>11</td>
+                            <td>12</td>
+                        </tr>
+                        <tr>
+                            <td>13</td>
+                            <td>14</td>
+                            <td>15</td>
+                            <td>16</td>
+                            <td class="marked">17</td>
+                            <td>18</td>
+                            <td>19</td>
+                        </tr>
+                        <tr>
+                            <td>20</td>
+                            <td>21</td>
+                            <td>22</td>
+                            <td>23</td>
+                            <td>24</td>
+                            <td>25</td>
+                            <td>26</td>
+                        </tr>
+                        <tr>
+                            <td>27</td>
+                            <td>28</td>
+                            <td>29</td>
+                            <td>30</td>
+                            <td>31</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
 
-    <div class="celebration-page" id="celebration-page">
-        <div class="celebration-content">
-            <h1>Happy Birthday, My Love!</h1>
-            <p>🎂 Here's your cake to sweeten the day!</p>
-            <p>🍫 Enjoy these chocolates as a treat!</p>
-            <p>🤗 Sending you a big warm hug!</p>
-            <p>❤️ You are loved beyond measure!</p>
+        <!-- Celebrate Button -->
+        <button class="celebrate-btn" onclick="celebrate()">Celebrate</button>
+        
+        <!-- Popup Message -->
+        <div class="popup" id="popup">
+            <h2>Happy Birthday My Love!</h2>
+            <p>Sending you all my love on this special day. Here’s a big virtual hug! 🤗</p>
+            <div class="virtual-hug">🤗</div>
         </div>
     </div>
 
     <script>
-        const canvas = document.getElementById("particles");
-        const ctx = canvas.getContext("2d");
+        // Countdown Timer Logic
+        const birthday = new Date("January 17, 2025 00:00:00").getTime();
 
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
+        const updateCountdown = () => {
+            const now = new Date().getTime();
+            const distance = birthday - now;
 
-        const particles = [];
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-        class Particle {
-            constructor() {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 5 + 1;
-                this.speedX = Math.random() * 3 - 1.5;
-                this.speedY = Math.random() * 3 - 1.5;
-                this.color = `hsl(${Math.random() * 360}, 100%, 50%)`;
+            document.getElementById("days").textContent = days < 10 ? "0" + days : days;
+            document.getElementById("hours").textContent = hours < 10 ? "0" + hours : hours;
+            document.getElementById("minutes").textContent = minutes < 10 ? "0" + minutes : minutes;
+            document.getElementById("seconds").textContent = seconds < 10 ? "0" + seconds : seconds;
+
+            if (distance < 0) {
+                clearInterval(timerInterval);
+                document.getElementById("countdown").innerHTML = "Time's up!";
             }
+        };
 
-            update() {
-                this.x += this.speedX;
-                this.y += this.speedY;
+        const timerInterval = setInterval(updateCountdown, 1000);
 
-                if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
-                if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
-            }
-
-            draw() {
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fillStyle = this.color;
-                ctx.fill();
-            }
+        // Celebrate Button Logic
+        function celebrate() {
+            document.getElementById('popup').style.display = 'block';
+            const confetti = document.createElement('div');
+            confetti.classList.add('cake-confetti');
+            document.body.appendChild(confetti);
+            setTimeout(() => {
+                confetti.remove();
+            }, 5000);
         }
-
-        function initParticles() {
-            for (let i = 0; i < 100; i++) {
-                particles.push(new Particle());
-            }
-        }
-
-        function handleParticles() {
-            for (let i = 0; i < particles.length; i++) {
-                particles[i].update();
-                particles[i].draw();
-            }
-        }
-
-        function animateParticles() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            handleParticles();
-            requestAnimationFrame(animateParticles);
-        }
-
-        initParticles();
-        animateParticles();
-
-        function launchCelebration() {
-            document.getElementById("main-content").style.display = "none";
-            document.getElementById("celebration-page").style.display = "block"
+    </script>
+</body>
+</html>
