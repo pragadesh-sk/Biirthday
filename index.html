@@ -14,14 +14,15 @@
         }
 
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: 'Roboto', 'Arial', sans-serif;
             height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            background: url('https://images.unsplash.com/photo-1504630533343-b8fda443f244') no-repeat center center fixed;
+            background: linear-gradient(135deg, #1e3c72, #2a5298), url('https://images.unsplash.com/photo-1504630533343-b8fda443f244') no-repeat center center fixed;
             background-size: cover;
-            color: #fff;
+            color: #f8f9fa;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
             overflow: hidden;
         }
 
@@ -31,11 +32,16 @@
             position: relative;
             width: 90%;
             max-width: 800px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
         }
 
         h1 {
             font-size: 3em;
             margin-bottom: 10px;
+            color: #f9c74f;
         }
 
         .countdown {
@@ -47,7 +53,8 @@
             margin-top: 30px;
             border-radius: 12px;
             padding: 20px;
-            background: rgba(255, 255, 255, 0.8);
+            background: rgba(0, 0, 0, 0.7);
+            color: #fff;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
         }
 
@@ -57,15 +64,20 @@
 
         /* Button */
         .celebrate-btn {
-            background-color: #ff6f61;
+            background-color: #f3722c;
             border: none;
             padding: 15px 30px;
             font-size: 1.5em;
             border-radius: 50px;
             cursor: pointer;
             margin-top: 20px;
+            color: #fff;
             transition: all 0.3s ease;
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+        }
+
+        .celebrate-btn:hover {
+            background-color: #f94144;
         }
 
         .celebrate-btn:active {
@@ -80,17 +92,19 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            background: linear-gradient(135deg, #ff7e5f, #feb47b);
+            background: linear-gradient(135deg, #f8f9fa, #e63946);
             padding: 40px;
             border-radius: 15px;
             box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
             z-index: 2;
             color: #fff;
             font-size: 1.5em;
+            text-shadow: none;
         }
 
         .popup h2 {
             margin-bottom: 20px;
+            color: #f4a261;
         }
 
         .cake-confetti {
@@ -124,7 +138,8 @@
         .countdown-timer span {
             font-size: 2.5em;
             font-weight: bold;
-            background-color: rgba(255, 255, 255, 0.7);
+            background-color: rgba(0, 0, 0, 0.7);
+            color: #f9c74f;
             padding: 15px;
             border-radius: 10px;
             box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
@@ -147,6 +162,7 @@
         .calendar-table th, .calendar-table td {
             padding: 10px;
             text-align: center;
+            color: #fff;
         }
 
         .calendar-table td {
@@ -154,11 +170,12 @@
         }
 
         .calendar-table td:hover {
-            background-color: #f7d7d7;
+            background-color: #f3722c;
+            color: #fff;
         }
 
         .calendar-table td.marked {
-            background-color: #ff6f61;
+            background-color: #f94144;
             color: #fff;
         }
 
