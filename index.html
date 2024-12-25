@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Birthday Wish for My Love</title>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
         /* General Reset */
         * {
@@ -19,10 +20,10 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            background: linear-gradient(135deg, #1e3c72, #2a5298), url('https://images.unsplash.com/photo-1504630533343-b8fda443f244') no-repeat center center fixed;
+            background: url('https://source.unsplash.com/1600x900/?birthday,celebration') no-repeat center center fixed;
             background-size: cover;
-            color: #f8f9fa;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+            color: #ffffff;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
             overflow: hidden;
         }
 
@@ -32,16 +33,17 @@
             position: relative;
             width: 90%;
             max-width: 800px;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.15);
             padding: 20px;
             border-radius: 15px;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
         }
 
         h1 {
-            font-size: 3em;
+            font-family: 'Great Vibes', cursive;
+            font-size: 3.5em;
             margin-bottom: 10px;
-            color: #f9c74f;
+            color: #ffde59;
         }
 
         .countdown {
@@ -64,7 +66,7 @@
 
         /* Button */
         .celebrate-btn {
-            background-color: #f3722c;
+            background-color: #ff6f61;
             border: none;
             padding: 15px 30px;
             font-size: 1.5em;
@@ -77,7 +79,7 @@
         }
 
         .celebrate-btn:hover {
-            background-color: #f94144;
+            background-color: #ff2e2e;
         }
 
         .celebrate-btn:active {
@@ -92,39 +94,35 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            background: linear-gradient(135deg, #f8f9fa, #e63946);
+            background: linear-gradient(135deg, #ff7e5f, #feb47b);
             padding: 40px;
             border-radius: 15px;
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
             z-index: 2;
             color: #fff;
             font-size: 1.5em;
-            text-shadow: none;
         }
 
         .popup h2 {
             margin-bottom: 20px;
+            font-family: 'Great Vibes', cursive;
             color: #f4a261;
         }
 
-        .cake-confetti {
+        .popup .close-btn {
             position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100%;
-            animation: confetti 2s infinite;
-        }
-
-        @keyframes confetti {
-            0% {
-                transform: translateX(-50%) rotate(0deg);
-                opacity: 1;
-            }
-            100% {
-                transform: translateX(-50%) rotate(360deg);
-                opacity: 0;
-            }
+            top: 10px;
+            right: 10px;
+            background: #fff;
+            color: #ff6f61;
+            border: none;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            font-size: 1.2em;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
         }
 
         /* Countdown Timer */
@@ -188,7 +186,7 @@
         /* Mobile Responsiveness */
         @media (max-width: 768px) {
             h1 {
-                font-size: 2em;
+                font-size: 2.5em;
             }
 
             .countdown-timer span {
@@ -218,7 +216,7 @@
 
         @media (max-width: 480px) {
             h1 {
-                font-size: 1.8em;
+                font-size: 2em;
             }
 
             .countdown-timer span {
@@ -329,6 +327,7 @@
         
         <!-- Popup Message -->
         <div class="popup" id="popup">
+            <button class="close-btn" onclick="closePopup()">&times;</button>
             <h2>Happy Birthday My Love!</h2>
             <p>Sending you all my love on this special day. Here’s a big virtual hug! 🤗</p>
             <div class="virtual-hug">🤗</div>
@@ -364,12 +363,10 @@
         // Celebrate Button Logic
         function celebrate() {
             document.getElementById('popup').style.display = 'block';
-            const confetti = document.createElement('div');
-            confetti.classList.add('cake-confetti');
-            document.body.appendChild(confetti);
-            setTimeout(() => {
-                confetti.remove();
-            }, 5000);
+        }
+
+        function closePopup() {
+            document.getElementById('popup').style.display = 'none';
         }
     </script>
 </body>
