@@ -239,25 +239,7 @@
                 padding: 6px;
             }
         }
-            .popper {
-      position: fixed;
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background-color: #f39c12;
-      animation: pop 1s linear infinite;
-    }
-    @keyframes pop {
-      0% {
-        opacity: 1;
-        transform: translateY(0px) scale(1);
-      }
-      100% {
-        opacity: 0;
-        transform: translateY(-100px) scale(0);
-      }
-    }
-
+           
     </style>
 </head>
 <body>
@@ -384,18 +366,6 @@
         };
 
         const timerInterval = setInterval(updateCountdown, 1000);
-        // Popper effect
-    const createPopper = (x, y) => {
-      const popper = document.createElement('div');
-      popper.classList.add('popper');
-      popper.style.left = `${x}px`;
-      popper.style.top = `${y}px`;
-      document.body.appendChild(popper);
-
-      setTimeout(() => {
-        popper.remove();
-      }, 1000);
-    };
         // Celebrate Button Logic
         function celebrate() {
             document.getElementById('popup').style.display = 'block';
