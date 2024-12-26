@@ -239,7 +239,6 @@
                 padding: 6px;
             }
         }
-           
     </style>
 </head>
 <body>
@@ -327,7 +326,7 @@
         <!-- Celebrate Button -->
          <p id='waitingMessage'>Wait till the special day to celebrate! 🎉</p>
 
-<button class="celebrate-btn" onclick="celebrate()" id="celebrateBtn">Celebrate</button>
+<button class="celebrate-btn" onclick="celebrate()" id="celebrateBtn" disabled>Celebrate</button>
         
         <!-- Popup Message -->
         <div class="popup" id="popup">
@@ -366,13 +365,10 @@
         };
 
         const timerInterval = setInterval(updateCountdown, 1000);
+
         // Celebrate Button Logic
         function celebrate() {
             document.getElementById('popup').style.display = 'block';
-            for (let i = 0; i < 50; i++) {
-            const x = Math.random() * window.innerWidth;
-            const y = Math.random() * window.innerHeight;
-            createPopper(x, y);
         }
 
         function closePopup() {
